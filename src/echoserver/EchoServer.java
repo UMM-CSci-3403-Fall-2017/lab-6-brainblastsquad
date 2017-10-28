@@ -16,14 +16,16 @@ public class EchoServer {
         InputStream in = client.getInputStream();
         OutputStream out = client.getOutputStream();
         
-        PrintWriter writer = new PrintWriter(out, true);
-        byte b;
-        while ((b = (byte) in.read()) != -1) {
-        	writer.println(b);
+        int b;
+        while((b = in.read()) != -1) {
+        	out.write(b);
+        	out.flush();
         }
         
-        
+        in.close();
+        out.close();
         client.close();
+        
       }
     } catch (IOException ioe) {
       System.err.println(ioe);

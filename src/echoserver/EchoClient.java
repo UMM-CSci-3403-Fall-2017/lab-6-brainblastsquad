@@ -11,12 +11,13 @@ import java.io.*;
 public class EchoClient {
 	 public static void main(String[] args) {
 		    try {
-		      Socket socket = new Socket("Reliant.morris.umn.edu", 6013);
+		      Socket socket = new Socket("127.0.0.1", 6013);
 		      // You can change 127.0.0.1 to a machine name if you want to try this across
 		      // the network to another machine.
 		      // Socket socket = new Socket("some.machine.edu", 6013);
 		      
 		      InputStream input = socket.getInputStream();
+		      OutputStream out = socket.getOutputStream();
 		      
 		      BufferedReader read = new BufferedReader(new InputStreamReader(input));
 		      

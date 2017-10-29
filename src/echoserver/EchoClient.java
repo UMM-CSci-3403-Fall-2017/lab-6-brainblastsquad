@@ -16,16 +16,28 @@ public class EchoClient {
 		      // the network to another machine.
 		      // Socket socket = new Socket("some.machine.edu", 6013);
 		      
-		      InputStream input = socket.getInputStream();
-		      OutputStream out = socket.getOutputStream();
+		      // Variables for getting input from server and output to the server
+		      InputStream inServ = socket.getInputStream();
+		      OutputStream outServ = socket.getOutputStream();
 		      
-		      BufferedReader read = new BufferedReader(new InputStreamReader(input));
-		      
-		      byte in;
-		      while ((in = (byte) read.read()) != -1) {
-		        System.out.println(in);
+		      // Variable b which takes in the data from the keyboard.
+		      // If no errors occur, reads until end of input.
+		      // writes b to outServ.
+		      // Prints out and writes inKey
+		      int b;
+		      while((b = System.in.read()) != -1) {
+		    	  outServ.write(b);
+		    	  System.out.write(inServ.read());
+		    	  outServ.flush();
 		      }
 		      
+		      
+		      
+		     // Flush and close the outputs/inputs so there is no unwritten data
+		      
+		      System.out.flush();
+		      inServ.close();
+		      outServ.close();
 		      socket.close();
 		    } catch (IOException ioe) {
 		      System.out.println("We caught an exception");
